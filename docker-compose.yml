@@ -4,11 +4,10 @@ services:
   
   elasticsearch:
     image: elasticsearch:8.2.3
-    restart: always
     volumes:
       - elastic_data:/usr/share/elasticsearch/data/
     environment:
-      ES_JAVA_OPTS: "-Xms256m -Xmx256m"
+      ES_JAVA_OPTS: "-Xms2g -Xmx2g"
       discovery.type: multi-node
       xpack.security.enabled: "false"
       vm.max_map_count: "262144"
@@ -21,22 +20,21 @@ services:
   
   logstash:
     image: logstash:8.2.3
-    restart: always
     volumes:
-      - logstash:/logstash_dir
-    command: logstash -f /logstash_dir/logstash.conf
+      - logstash-pipeline:/usr/share/logstash/pipeline
     depends_on: 
       - elasticsearch
     ports:
-      - '9600:9600'
+      - '12201:12201/udp'
     environment:
-      LS_JAVA_OPTS: "-Xms256m -Xmx256m"
+      ES_JAVA_OPTS: "-Xms2g -Xmx2g"
     networks:
       - elk
+    deploy:
+      mode: global
 
   kibana:
     image: kibana:8.2.3
-    restart: always
     ports:
       - '5601:5601'
     environment:
@@ -47,8 +45,10 @@ services:
       - elk
 
 volumes:
-  elastic_data: {}
-  logstash: {}
+  elastic_data: 
+    driver: local
+  logstash: 
+    driver: local
 
 networks:
   elk:
