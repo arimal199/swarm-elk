@@ -12,7 +12,6 @@ services:
       ES_JAVA_OPTS: "-Xms256m -Xmx256m"
       discovery.type: single-node
       xpack.security.enabled: "false"
-      cluster.initial_master_nodes: "10.0.7.170"
     ports:
         - '9200:9200'
         - '9300:9300'
