@@ -11,7 +11,6 @@ services:
       ES_JAVA_OPTS: "-Xms256m -Xmx256m"
       discovery.type: multi-node
       xpack.security.enabled: "false"
-      vm.max_map_count: "262144"
       cluster.initial_master_nodes: "10.0.7.170"
     ports:
         - '9200:9200'
