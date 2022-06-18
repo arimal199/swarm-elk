@@ -8,10 +8,7 @@ services:
       - elastic_data:/usr/share/elasticsearch/data/
     environment:
       ES_JAVA_OPTS: "-Xms2g -Xmx2g"
-      discovery.type: multi-node
-      xpack.security.enabled: "false"
-      vm.max_map_count: "262144"
-      cluster.initial_master_nodes: "10.0.7.170"
+      discovery.type: single-node
     ports:
         - '9200:9200'
         - '9300:9300'
