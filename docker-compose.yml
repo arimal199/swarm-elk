@@ -27,7 +27,11 @@ services:
     ports:
       - '9600:9600'
     environment:
+<<<<<<< HEAD
       LS_JAVA_OPTS: "-Xms256m -Xmx1024m"
+=======
+      LS_JAVA_OPTS: "-Xms256m -Xms1024m"
+>>>>>>> 75ff5505ff70bce88ddfea3df0312bfa91bbd505
     networks:
       - elk
 
