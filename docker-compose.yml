@@ -11,10 +11,10 @@ services:
     environment:
       - ES_JAVA_OPTS: "-Xms256m -Xms1024m"
       discovery.type: multi-node
-      ports:
+    ports:
         - '9200:9200'
         - '9300:9300'
-      networks:
+    networks:
         - elk
   
   logstash:
