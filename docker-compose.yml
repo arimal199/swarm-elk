@@ -51,3 +51,8 @@ networks:
   elk:
     name: elk
     external: true
+
+logging:
+  driver: gelf
+  options:
+    gelf-address: "udp://localhost:12201"
