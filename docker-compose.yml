@@ -18,7 +18,7 @@ services:
   logstash:
     image: logstash:8.2.3
     volumes:
-      - ./logstash-pipeline:/usr/share/logstash/pipeline
+      - logstash-pipeline:/usr/share/logstash/pipeline
     depends_on: 
       - elasticsearch
     ports:
