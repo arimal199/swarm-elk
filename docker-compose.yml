@@ -20,7 +20,7 @@ services:
     image: logstash:8.2.3
     restart: always
     volumes:
-      - ./logstash:/logstash_dir
+      - logstash:/logstash_dir
     command: logstash -f /logstash_dir/logstash.conf
     depends_on: 
       - elasticsearch
@@ -45,6 +45,7 @@ services:
 
 volumes:
   elastic_data: {}
+  logstash: {}
 
 networks:
   elk:
