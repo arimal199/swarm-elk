@@ -9,8 +9,8 @@ services:
     volumes:
       - elastic_data:/usr/share/elasticsearch/data/
     environment:
-      - ES_JAVA_OPTS: "-Xms256m -Xms1024m"
-      - discovery.type: multi-node
+      ES_JAVA_OPTS: "-Xms256m -Xms1024m"
+      discovery.type: multi-node
     ports:
         - '9200:9200'
         - '9300:9300'
@@ -24,11 +24,12 @@ services:
     volumes:
       - ./logstash:/logstash_dir
     command: logstash -f /logstash_dir/logstash.conf
-    depends_on: elasticsearch
+    depends_on: 
+      - elasticsearch
     ports:
       - '9600:9600'
     environment:
-      - LS_JAVA_OPTS: "-Xmx256m -Xms1024m"
+      LS_JAVA_OPTS: "-Xmx256m -Xms1024m"
     networks:
       - elk
 
