@@ -10,8 +10,7 @@ services:
       ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-}
       ES_JAVA_OPTS: "-Xms512m -Xmx512m"
       discovery.type: single-node
-      reindex.ssl.verification_mode: none
-      xpack.security.http.ssl.enabled: 'false'
+      xpack.security.enabled: 'false'
     ports:
         - '9200:9200'
         - '9300:9300'
