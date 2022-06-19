@@ -9,7 +9,7 @@ services:
     environment:
       ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-}
       ES_JAVA_OPTS: "-Xms512m -Xmx512m"
-      discovery.type: single-node
+      discovery.type: multi-node
       xpack.security.enabled: 'false'
     ports:
         - '9200:9200'
@@ -20,6 +20,8 @@ services:
       driver: gelf
       options:
         gelf-address: "udp://localhost:12201"
+    deploy:
+      mode: global
 
   logstash:
     image: logstash:8.2.3
