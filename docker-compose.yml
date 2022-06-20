@@ -19,10 +19,6 @@ services:
         - elk
     deploy:
       mode: global
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://logstash:12201"
 
   logstash:
     image: logstash:8.2.3
@@ -56,6 +52,10 @@ services:
       - elasticsearch
     networks:
       - elk
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://logstash:12201"
     
 
 
