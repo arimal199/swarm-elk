@@ -52,10 +52,6 @@ services:
       - elasticsearch
     networks:
       - elk
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://logstash:12201"
     
 
 
