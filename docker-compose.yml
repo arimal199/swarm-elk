@@ -19,6 +19,10 @@ services:
         - elk
     deploy:
       mode: global
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://logstash:12201"
 
   logstash:
     image: logstash:8.2.3
@@ -30,10 +34,10 @@ services:
       - '5044:5044'
       - '9600:9600'
       - '9700:9700'
+      - "12201:12201/udp"
     environment:
       ES_JAVA_OPTS: "-Xms256m -Xmx256m"
       LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
-      xpack.monitoring.enabled: true
       xpack.monitoring.elasticsearch.url: http://elasticsearch:9200
     networks:
       - elk
@@ -52,6 +56,7 @@ services:
       - elasticsearch
     networks:
       - elk
+    
 
 
 
